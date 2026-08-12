@@ -28,42 +28,6 @@
 | 唯一标识 | UUID |
 | 后端存储 | 本地文件系统（SHA-256 去重对象存储） |
 
-## 项目结构
-文件实时推送-github/
-├── .gitattributes
-├── client/                  # 前端 React 应用
-│   ├── index.html           # Vite 入口 HTML
-│   ├── src/
-│   │   ├── App.jsx          # 主应用入口，管理全局状态与 Socket 事件
-│   │   ├── main.jsx         # Vite 入口
-│   │   ├── index.css        # Tailwind + 全局样式
-│   │   ├── components/
-│   │   │   ├── FileList.jsx      # 文件列表组件（支持排序、下载、删除）
-│   │   │   ├── FileTree.jsx      # 目录树组件（支持搜索、展开折叠）
-│   │   │   ├── UploadDialog.jsx  # 上传对话框（拖拽 + 文件选择）
-│   │   │   └── VersionHistory.jsx # 版本历史面板
-│   │   └── hooks/
-│   │       ├── useSocket.js      # Socket.IO 连接管理 Hook
-│   │       └── useFileSync.js    # 本地目录双向同步 Hook
-│   ├── vite.config.js       # Vite 配置（含开发代理）
-│   ├── tailwind.config.js
-│   ├── postcss.config.js
-│   └── package.json
-├── server/                  # 后端 Express 服务
-│   ├── index.js             # 服务入口，配置 Express + Socket.IO
-│   ├── routes/
-│   │   └── files.js         # 文件 API 路由（上传/下载/列表/删除/还原）
-│   ├── services/
-│   │   ├── fileWatcher.js   # Chokidar 文件监听，实时推送变更事件
-│   │   └── versionManager.js # 版本管理核心（哈希计算、对象存储、清单维护）
-│   └── package.json
-├── shared/                  # 共享文件目录（自动创建）
-│   └── .sync-versions/      # 版本存储（自动创建）
-│       ├── manifest.json    # 文件清单（记录每个文件的当前哈希与版本列表）
-│       └── objects/         # 去重对象存储（按哈希前缀分目录）
-└── README.md
-
-
 ## 快速开始
 
 ### 1. 启动服务端
